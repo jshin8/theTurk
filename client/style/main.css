@@ -5,16 +5,26 @@ body {
 
 #like {
 	float: left;
-	margin-left: 375px;
+	/*margin-left: 375px;*/
 }
 
 #dislike {
 	float: right;
-	margin-right: 375px;
+	/*margin-right: 375px;*/
 }
 
+#window {
+	max-width: 1000px;
+	margin: 0 auto;
+}
 .rating {
 	font-weight: bold;
 	font-family: Arial;
 	font-size: 22px;
+}
+
+.title {
+	font-weight: bold;
+	font-family: Arial;
+	font-size: 30px;
 }

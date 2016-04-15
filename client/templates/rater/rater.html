@@ -1,8 +1,10 @@
 <template name='rater'>
 	<div class='rater'>
-		<h1>Image Rater</h1>
-	  	<img src='https://s3.amazonaws.com/imageproj/im{{photoNumber}}.jpg'>
-	  	<br>
-	  	<span id='like' class='rating'>Like<br>Press 'A'</span><span id='dislike' class='rating'>Dislike<br>Press 'L'</span>
+		<div id='window'>
+			<h1 class='title'>Image Rater</h1>
+		  	<div id='like' class='rating'>Like<br>Press 'A'</div>
+		  	<img src='https://s3.amazonaws.com/imageproj/im{{photoNumber}}.jpg'>
+		  	<div id='dislike' class='rating'>Dislike<br>Press 'L'</div>
+	  	</div>
   	</div>
 </template>

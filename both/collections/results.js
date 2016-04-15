@@ -31,3 +31,13 @@ Results.attachSchema(new SimpleSchema({
 		optional: true
 	}
 }))
+
+if (Meteor.isClient) {
+	Tracker.autorun(function(){
+	    Meteor.subscribe('allResults');
+	  });
+}
+
+Accounts.config({
+  forbidClientAccountCreation : true
+});

@@ -26,3 +26,7 @@ session
 frozeman:template-var
 gwendall:body-events
 u2622:persistent-session
+
+accounts-ui
+
+accounts-password

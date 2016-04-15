@@ -1,0 +1,43 @@
+<template name='admin'>
+	<div>
+		{{#if isLoggedIn}}
+			<div>
+				Welcome {{> loginButtons}}.
+			</div>
+			{{> dataTable}}
+		{{else}}
+			<div>
+				{{> loginButtons}}
+			</div>
+		{{/if}}
+	</div>
+</template>
+
+
+<template name='dataTable'>
+	<table class='table table-striped'>
+        <thead>
+            <tr>
+                <th></th>
+                <th>Username</th>
+                <th>ImageNumber</th>
+                <th>Rating</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each results}}
+                <tr>
+                    <td>
+                    </td>
+                    <td>
+                        {{username}}
+                    </td>
+                    {{#each images}}
+	                    <td>{{imageNumber}}</td>
+	                    <td>{{rating}}</td>
+                    {{/each}}
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</template>

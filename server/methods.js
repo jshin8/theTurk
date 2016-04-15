@@ -1,7 +1,7 @@
 Meteor.methods({
 	liker: function(turkerId,array,index) {
 		var imageNumber = array[index]
-		Results.update({_id:turkerId}, {$push:{images:{imageNumber:imageNumber,rating:'like'}}}, function(error,result) {
+		Results.update({_id:turkerId}, {$push:{images:{imageNumber:imageNumber,rating:'l'}}}, function(error,result) {
 			if (error){
 				console.log('error: ', error)
 			}
@@ -12,7 +12,7 @@ Meteor.methods({
 	},
 	disliker: function(turkerId,array,index) {
 		var imageNumber = array[index]
-		Results.update({_id:turkerId}, {$push:{images:{imageNumber:imageNumber,rating:'dislike'}}}, function(error,result) {
+		Results.update({_id:turkerId}, {$push:{images:{imageNumber:imageNumber,rating:'d'}}}, function(error,result) {
 			if (error){
 				console.log('error: ', error)
 			}

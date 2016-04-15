@@ -1,3 +1,3 @@
-Meteor.publish('Results', function(){
+Meteor.publish('allResults', function(){
 	return Results.find({});
 });
