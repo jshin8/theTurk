@@ -10,8 +10,6 @@ Results.allow({
   
 });
 
-
-
 Results.attachSchema(new SimpleSchema({
 	username: {
 		type: String,
