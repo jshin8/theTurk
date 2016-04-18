@@ -1,4 +1,4 @@
-Template.rater.rendered = function() {
+Template.rater.created = function() {
 	var array = makeRandomizedArray();
 	Session.setPersistent('array', array);
 
@@ -8,24 +8,28 @@ Template.rater.rendered = function() {
 		sourceArray.push('https://s3.amazonaws.com/imageproj/im' + number + '.jpg')
 	})
 	var images = [];
+	var loadCount = 0;
 	_.each(sourceArray, function(source,i) {
 		images[i] = new Image();
 		images[i].src = source;
+		images[i].onload = function() {
+			loadCount = loadCount + 1
+			if (loadCount == 504) {
+				Session.set('index', 1);
+			}
+			else {
+				Session.set('index', 0);
+			}			
+		}
 	})
-	console.log('asdf',images.length)
-	if (images.length < 503) {
-		setInterval(function(){
-			Session.set('index', 0);
-			
-		}, 3000)
-	}
+	// console.log('images',images)
 };
 
 Template.rater.helpers({
 	photoNumber: function() {
 		var array = Session.get('array');
 		var index = Session.get('index');
-		if (index !== 503) {
+		if (index !== 504) {
 			return array[index]
 		}
 		else {
@@ -67,7 +71,7 @@ var makeRandomizedArray = function() {
 	var repeaters = _.sample(initialRandomization,10);
 	var initialRandomizationPlusRepeaters = initialRandomization.concat(repeaters);
 	var finalShuffledArray = _.shuffle(initialRandomizationPlusRepeaters);
-	var instructions = ['PRE1', 'PRE2', 'PRE3']
+	var instructions = ['PRE0', 'PRE1', 'PRE2', 'PRE3']
 	var instructionsWithFinalShuffledArray = instructions.concat(finalShuffledArray)
 	return instructionsWithFinalShuffledArray;
 };
