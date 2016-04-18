@@ -1,7 +1,6 @@
 Template.rater.rendered = function() {
 	var array = makeRandomizedArray();
 	Session.setPersistent('array', array);
-	Session.set('index', 0);
 
 	//preloads images
 	var sourceArray = []
@@ -13,13 +12,20 @@ Template.rater.rendered = function() {
 		images[i] = new Image();
 		images[i].src = source;
 	})
+	console.log('asdf',images.length)
+	if (images.length < 503) {
+		setInterval(function(){
+			Session.set('index', 0);
+			
+		}, 3000)
+	}
 };
 
 Template.rater.helpers({
 	photoNumber: function() {
 		var array = Session.get('array');
 		var index = Session.get('index');
-		if (index !== 501) {
+		if (index !== 503) {
 			return array[index]
 		}
 		else {
@@ -61,7 +67,7 @@ var makeRandomizedArray = function() {
 	var repeaters = _.sample(initialRandomization,10);
 	var initialRandomizationPlusRepeaters = initialRandomization.concat(repeaters);
 	var finalShuffledArray = _.shuffle(initialRandomizationPlusRepeaters);
-	var instructions = ['PRE1']
+	var instructions = ['PRE1', 'PRE2', 'PRE3']
 	var instructionsWithFinalShuffledArray = instructions.concat(finalShuffledArray)
 	return instructionsWithFinalShuffledArray;
 };
