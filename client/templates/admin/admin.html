@@ -20,8 +20,7 @@
             <tr>
                 <th></th>
                 <th>Username</th>
-                <th>ImageNumber</th>
-                <th>Rating</th>
+                <th>Download</th>
             </tr>
         </thead>
         <tbody>
@@ -32,10 +31,10 @@
                     <td>
                         {{username}}
                     </td>
-                    {{#each images}}
-	                    <td>{{imageNumber}}</td>
-	                    <td>{{rating}}</td>
-                    {{/each}}
+                    
+	                    <td><button id='buttonDownload'>Download CSV</button></td>
+			
+                   
                 </tr>
             {{/each}}
         </tbody>

@@ -25,6 +25,14 @@ Meteor.methods({
 			}
 		});
 	},
+	download: function(id) {
+	  var collection =  Results.findOne(id).images
+
+	  var heading = true; // Optional, defaults to true
+	  var delimiter = "," // Optional, defaults to ",";
+	  return exportcsv.exportToCSV(collection, heading, delimiter);
+	}
+
 	// RegisterHITType: function(params) {
 	// 	check(params, {
 	// 		'Operation':String,
