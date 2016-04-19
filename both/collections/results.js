@@ -20,12 +20,16 @@ Results.attachSchema(new SimpleSchema({
 		type: [Object],
 		optional: true
 	},
+	'images.$.userId': {
+		type: String,
+		optional: true
+	},
 	'images.$.imageNumber': {
 		type: String,
 		optional: true
 	},
 	'images.$.rating': {
-		type: String,
+		type: Number,
 		optional: true
 	},
 	'images.$.timestamp': {
