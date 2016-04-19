@@ -17,10 +17,9 @@ Template.dataTable.events({
 	  	});
 	},
 	'click #buttonDownloadAll': function(event) {
-		var id = this._id
 		var date = Date.now()
 		var nameFile = 'ImageRaterAll-' + date + '.csv';
-		Meteor.call('downloadAll', id, function(err, fileContent) {
+		Meteor.call('downloadAll', function(err, fileContent) {
 		    if(fileContent){
 		     var blob = new Blob([fileContent], {type: "text/plain;charset=utf-8"});
 		     saveAs(blob, nameFile);

@@ -1,5 +1,10 @@
 <template name='exit'>
 	<div class='rating'>
 		Thank you!
+		<form name='mturk_form' method='post' id='mturk_form' action='https://workersandbox.mturk.com/mturk/externalSubmit'>
+			<!-- <input type='hidden' value='{{userId}}' name='assignmentId' id='assignmentId'> -->
+			<input type='text' name='assignmentId' id='assignmentId'>
+			<input type='submit' id='submitButton' value='Submit'>
+		</form>
 	</div>
 </template>

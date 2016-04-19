@@ -23,7 +23,7 @@ Meteor.methods({
 		var delimiter = ","; // Optional, defaults to ",";
 		return exportcsv.exportToCSV(collection, heading, delimiter);
 	},
-	downloadAll: function(id) {
+	downloadAll: function() {
 		var allRecords = Results.find().fetch();
 		var images = []
 		_.each(allRecords, function(record) {
