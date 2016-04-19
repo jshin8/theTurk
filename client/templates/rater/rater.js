@@ -40,14 +40,15 @@ Template.rater.helpers({
 
 
 Template.body.events({
-	'keydown': function(event,template) {
+	'keyup': function(event,template) {
 		var location = event.currentTarget.URL;
 		var array = Session.get('array');
 		var index = Session.get('index');
 		var turkerId = Session.get('turkerId');
+		var timestamp = Math.floor(event.timeStamp);
 		if (location.match('/rater') && event.which==65) {
 			Session.set('index', index+1);
-			Meteor.call('liker', turkerId ,array ,index , function(error,result) {
+			Meteor.call('liker', turkerId, array, index, timestamp, function(error,result) {
 				if (error) {
 					console.log('error: ', error);
 				}
@@ -55,7 +56,7 @@ Template.body.events({
 		}
 		else if (location.match('/rater') && event.which==76) {
 			Session.set('index', index+1);
-			Meteor.call('disliker', turkerId ,array ,index , function(error,result) {
+			Meteor.call('disliker', turkerId, array, index, timestamp, function(error,result) {
 				if (error) {
 					console.log('error: ', error);
 				}

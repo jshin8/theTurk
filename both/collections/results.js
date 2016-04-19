@@ -27,8 +27,12 @@ Results.attachSchema(new SimpleSchema({
 	'images.$.rating': {
 		type: String,
 		optional: true
+	},
+	'images.$.timestamp': {
+		type: Number,
+		optional:true
 	}
-}))
+}));
 
 if (Meteor.isClient) {
 	Tracker.autorun(function(){
