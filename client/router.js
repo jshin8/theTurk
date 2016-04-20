@@ -12,6 +12,12 @@ FlowRouter.route('/rater', {
 	}
 });
 
+FlowRouter.route('/survey', {
+	action: function() {
+		BlazeLayout.render('layout', {content: 'survey'});
+	}
+});
+
 FlowRouter.route('/exit', {
 	action: function() {
 		BlazeLayout.render('layout', {content: 'exit'});

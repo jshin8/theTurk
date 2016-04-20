@@ -1,0 +1,10 @@
+<template name='survey'>
+	<div class='survey'>
+		{{sentenceBegin}}, please open this survey in another window.<br><a onclick="window.open('http://survey.qualtrics.com/SE/?SID=SV_eRjRH7NrQL1XbuJ', '_blank', 'location=yes,height=1150,width=1000,scrollbars=yes,status=yes');"><button>Click here for survey</button></a><br>After completing the survey, you will receive a code. Enter that code into the input below in order to {{sentenceFinish}}
+
+		<form id='surveyCodeForm'>
+			<input type='text' id='surveyCode'>
+			<input type='submit' value='Submit Code'>
+		</form>
+	</div>
+</template>

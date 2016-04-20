@@ -16,6 +16,10 @@ Results.attachSchema(new SimpleSchema({
 		label: 'username',
 		optional: true
 	},
+	counterbalancer: {
+		type: Number,
+		optional:true
+	},
 	images: {
 		type: [Object],
 		optional: true

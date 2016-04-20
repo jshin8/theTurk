@@ -33,7 +33,13 @@ Template.rater.helpers({
 			return array[index]
 		}
 		else {
-			FlowRouter.go('/exit');
+			var counterbalancer = Session.get('counterbalancer');
+			if (counterbalancer == 1) {
+				FlowRouter.go('/survey');
+			}
+			else {
+				FlowRouter.go('/exit');
+			}
 		}
 	}
 });
