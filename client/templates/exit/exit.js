@@ -9,24 +9,16 @@ var turkGetParam = function ( name, defaultValue ) {
      return results[1];    
    } 
 }
-Template.exit.helpers({
-	assignmentId: function(){
-
-		var hitId = turkGetParam('hitId', "");
-		console.log('hitId', hitId);
-  		// document.getElementById('assignmentId').value = assignmentID;
-
-		var parentWindow = window.parent; 
-		var href = location.href;
-		console.log('parentWindow', parentWindow);
-		console.log('href',href)
-
-		// var gupfunc = gup('hitId');
-		// console.log('gupfunc',gupfunc)
-
-		// var assignmentId = $("input[name='hitId']").getAttribute('value');
-		// console.log('assignmentId', assignmentId);
-		// return assignmentId
-	}
+Template.exit.rendered = function({
+		var assignmentId = turkGetParam('assignmentId', "");
+		var hitId = turkGetParam('assignmentId', "");
+		if (assignmentId) {
+			console.log('assignmentId', assignmentId);
+  			document.getElementById('assignmentId').value = assignmentId;
+		}
+		else {
+			console.log('hitId', hitId);
+			document.getElementById('assignmentId').value = hitId;
+		}
 })
 
