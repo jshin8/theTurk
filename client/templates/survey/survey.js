@@ -23,7 +23,8 @@ Template.survey.helpers({
 
 Template.survey.events({
 	'submit #surveyCodeForm':function(event,template) {
-		var code = $('#surveyCode').val();console.log('code',code)
+		event.preventDefault();
+		var code = $('#surveyCode').val();
 		var counterbalancer = Session.get('counterbalancer');
 		var turkerId = Session.get('turkerId');
 
@@ -39,7 +40,6 @@ Template.survey.events({
 					else if (counterbalancer == 2) {
 						FlowRouter.go('/rater')
 					}
-					
 				}
 			});
 		}

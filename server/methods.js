@@ -2,7 +2,7 @@
 Meteor.methods({
 	liker: function(turkerId,array,index,timestamp) {
 		var imageNumber = array[index];
-		Results.update({_id:turkerId}, {$push:{images:{userId:turkerId,imageNumber:imageNumber,rating:1,timestamp:timestamp}}}, function(error,result) {
+		Results.update(turkerId, {$push:{images:{userId:turkerId,imageNumber:imageNumber,rating:1,timestamp:timestamp}}}, function(error,result) {
 			if (error){
 				console.log('error: ', error);
 			}
@@ -10,7 +10,7 @@ Meteor.methods({
 	},
 	disliker: function(turkerId,array,index,timestamp) {
 		var imageNumber = array[index];
-		Results.update({_id:turkerId}, {$push:{images:{userId:turkerId,imageNumber:imageNumber,rating:0,timestamp:timestamp}}}, function(error,result) {
+		Results.update(turkerId, {$push:{images:{userId:turkerId,imageNumber:imageNumber,rating:0,timestamp:timestamp}}}, function(error,result) {
 			if (error){
 				console.log('error: ', error);
 			}
@@ -25,10 +25,11 @@ Meteor.methods({
 	},
 	downloadAll: function() {
 		var allRecords = Results.find().fetch();
-		var images = []
+		var images = [];
 		_.each(allRecords, function(record) {
-			images = images.concat(record.images)
-		})
+			_.extend(record.images[0],{qualtricsCode:record.qualtricsCode});
+			images = images.concat(record.images);
+		});
 		var collection =  images;
 
 		var heading = true; 
@@ -36,10 +37,10 @@ Meteor.methods({
 		return exportcsv.exportToCSV(collection, heading, delimiter);
 	},
 	surveyCode: function(turkerId,code) {
-		Results.update({_id:turkerId}, {$push:{qualtricsCode:code}}, function(error,result) {
+		Results.update(turkerId, {$set:{qualtricsCode:code}}, function(error,result) {
 			if (error) {
 				console.log('error: ', error);
 			}
-		})
+		});
 	}
 });
