@@ -17,7 +17,12 @@ Meteor.methods({
 		});
 	},
 	download: function(id) {
-		var collection =  Results.findOne(id).images;
+		var result = Results.findOne(id)
+		if (result.images) {
+			var images = result.images;
+			_.extend(images[0], {qualtricsCode:result.qualtricsCode,counterbalancer:result.counterbalancer})
+		}
+		var collection = images
 
 		var heading = true; // Optional, defaults to true
 		var delimiter = ","; // Optional, defaults to ",";
@@ -27,8 +32,10 @@ Meteor.methods({
 		var allRecords = Results.find().fetch();
 		var images = [];
 		_.each(allRecords, function(record) {
-			_.extend(record.images[0],{qualtricsCode:record.qualtricsCode});
-			images = images.concat(record.images);
+			if (record.images) {
+				_.extend(record.images[0],{qualtricsCode:record.qualtricsCode,counterbalancer:record.counterbalancer});
+				images = images.concat(record.images);
+			}
 		});
 		var collection =  images;
 
@@ -42,5 +49,17 @@ Meteor.methods({
 				console.log('error: ', error);
 			}
 		});
+	},
+	submitHIT: function(assignmentId) {
+		HTTP.post('https://workersandbox.mturk.com/mturk/externalSubmit', {assignmentId:assignmentId},
+			function(e,r) {
+				if (e) {
+					console.log('error while posting: ', e);
+				}
+				else {
+					console.log('here the result: ',r)
+				}
+			}
+		)
 	}
 });
