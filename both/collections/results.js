@@ -20,6 +20,10 @@ Results.attachSchema(new SimpleSchema({
 		type: Number,
 		optional:true
 	},
+	qualtricsCode: {
+		type: String,
+		optional:true
+	},
 	images: {
 		type: [Object],
 		optional: true

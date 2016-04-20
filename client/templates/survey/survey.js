@@ -23,16 +23,25 @@ Template.survey.helpers({
 
 Template.survey.events({
 	'submit #surveyCodeForm':function(event,template) {
-		var code = $('#surveyCode').val();
+		var code = $('#surveyCode').val();console.log('code',code)
 		var counterbalancer = Session.get('counterbalancer');
+		var turkerId = Session.get('turkerId');
 
 		if (code.length == 7) {
-			if (counterbalancer == 1) {
-				FlowRouter.go('/exit');
-			}
-			else if (counterbalancer == 2) {
-				FlowRouter.go('/rater')
-			}
+			Meteor.call('surveyCode', turkerId, code, function (error,result) {
+				if (error) {
+					console.log('error: ', error);
+				}
+				else {
+					if (counterbalancer == 1) {
+						FlowRouter.go('/exit');
+					}
+					else if (counterbalancer == 2) {
+						FlowRouter.go('/rater')
+					}
+					
+				}
+			});
 		}
 		else {
 			alert('Are you sure that is the right code?')

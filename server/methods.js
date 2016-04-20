@@ -34,7 +34,12 @@ Meteor.methods({
 		var heading = true; 
 		var delimiter = ",";
 		return exportcsv.exportToCSV(collection, heading, delimiter);
+	},
+	surveyCode: function(turkerId,code) {
+		Results.update({_id:turkerId}, {$push:{qualtricsCode:code}}, function(error,result) {
+			if (error) {
+				console.log('error: ', error);
+			}
+		})
 	}
-
-
 });
