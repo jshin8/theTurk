@@ -1,3 +1,15 @@
+var turkGetParam = function ( name, defaultValue ) { 
+   var regexS = "[\?&]"+name+"=([^&#]*)"; 
+   var regex = new RegExp( regexS ); 
+   var tmpURL = window.location.href; 
+   var results = regex.exec( tmpURL ); 
+   if( results == null ) { 
+     return defaultValue; 
+   } else { 
+     return results[1];    
+   } 
+}
+
 Template.rater.created = function() {
 	var array = makeRandomizedArray();
 	Session.setPersistent('array', array);
@@ -27,6 +39,9 @@ Template.rater.created = function() {
 
 Template.rater.helpers({
 	photoNumber: function() {
+		var assignmentID = turkGetParam('assignmentId', "");
+		console.log('assignmentID', assignmentID);
+		
 		var array = Session.get('array');
 		var index = Session.get('index');
 		if (index !== 504) {
