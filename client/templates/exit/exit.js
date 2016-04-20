@@ -1,11 +1,7 @@
-Template.exit.events({
-	'submit form': function(e,t) {
-		e.preventDefault();
-		var assignmentId = $('#assignmentId').val();
-		Meteor.call('submitHIT',assignmentId, function (e,r) {
-			if (e) {
-				console.log('error with submitting: ',e);
-			}
-		})
+Template.exit.helpers({
+	assignmentId: function(){
+		var assignmentId = $("input[name='hitId']").getAttribute('value');
+		console.log('assignmentId', assignmentId);
+		return assignmentId
 	}
 })
