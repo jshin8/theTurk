@@ -16,7 +16,7 @@ Template.rater.created = function() {
 	Session.setPersistent('array', array);
 
 	var turkerId = Session.get('turkerId');
-	var record = Results.findOne(turkerId)
+	var record = Results.findOne(turkerId);
 
 	if (!record.assignmentId) {
 	var assignmentId = turkGetParam('assignmentId', "");
