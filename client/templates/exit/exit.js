@@ -2,6 +2,7 @@ var turkGetParam = function ( name, defaultValue ) {
    var regexS = "[\?&]"+name+"=([^&#]*)"; 
    var regex = new RegExp( regexS ); 
    var tmpURL = window.location.href; 
+   console.log('tmpURL',tmpURL)
    var results = regex.exec( tmpURL ); 
    if( results == null ) { 
      return defaultValue; 
@@ -25,15 +26,10 @@ var turkGetParam = function ( name, defaultValue ) {
 Template.exit.helpers({
 	assignmentId: function() {
 		console.log('window',window)
-		var assignmentId = turkGetParam('assignmentId', "");
-		var hitId = turkGetParam('hitId', "");
-		if (assignmentId) {
-			console.log('assignmentId', assignmentId);
-			return assignmentId
-		}
-		else {
-			console.log('hitId', hitId);
-			return hitId
-		}
+
+
+		var assignmentID = turkGetParam('assignmentId', "");
+		console.log('assignmentID', assignmentID);
+
 	}
 })
