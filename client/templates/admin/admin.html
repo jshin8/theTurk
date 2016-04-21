@@ -29,16 +29,18 @@
         </thead>
         <tbody>
             {{#each results}}
-                <tr>
-                    <td>
-                    </td>
-                    <td>
-                        {{username}}
-                    </td>
-	                <td>
-	                	<button id='buttonDownload'>Download CSV</button>
-	                </td>
-                </tr>
+            	{{#if completeResult}}
+	                <tr>
+	                    <td>
+	                    </td>
+	                    <td>
+	                        {{username}}
+	                    </td>
+		                <td>
+		                	<button id='buttonDownload'>Download CSV</button>
+		                </td>
+	                </tr>
+                {{/if}}
             {{/each}}
         </tbody>
     </table>

@@ -32,7 +32,7 @@ Meteor.methods({
 		var allRecords = Results.find().fetch();
 		var images = [];
 		_.each(allRecords, function(record) {
-			if (record.images) {
+			if (record.images && record.qualtricsCode) {
 				_.extend(record.images[0],{qualtricsCode:record.qualtricsCode,counterbalancer:record.counterbalancer});
 				images = images.concat(record.images);
 			}
@@ -49,17 +49,5 @@ Meteor.methods({
 				console.log('error: ', error);
 			}
 		});
-	},
-	submitHIT: function(assignmentId) {
-		HTTP.post('https://workersandbox.mturk.com/mturk/externalSubmit', {assignmentId:assignmentId},
-			function(e,r) {
-				if (e) {
-					console.log('error while posting: ', e);
-				}
-				else {
-					console.log('here the result: ',r)
-				}
-			}
-		)
 	}
 });

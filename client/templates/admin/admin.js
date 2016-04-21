@@ -1,6 +1,11 @@
 Template.dataTable.helpers({
 	results: function() {
 		return Results.find().fetch()
+	},
+	completeResult: function() {
+		if (this.images && this.qualtricsCode) {
+			return true
+		}
 	}
 })
 
