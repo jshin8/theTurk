@@ -25,7 +25,7 @@ var turkGetParam = function ( name, defaultValue ) {
 Template.exit.helpers({
 	assignmentId: function() {
 		var assignmentId = turkGetParam('assignmentId', "");
-		var hitId = turkGetParam('assignmentId', "");
+		var hitId = turkGetParam('hitId', "");
 		if (assignmentId) {
 			console.log('assignmentId', assignmentId);
 			return assignmentId
