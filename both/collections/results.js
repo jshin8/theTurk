@@ -16,6 +16,10 @@ Results.attachSchema(new SimpleSchema({
 		label: 'username',
 		optional: true
 	},
+	assignmentId: {
+		type: String,
+		optional:true
+	},
 	counterbalancer: {
 		type: Number,
 		optional:true
