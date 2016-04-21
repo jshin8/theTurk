@@ -15,9 +15,12 @@ Template.rater.created = function() {
 	var array = makeRandomizedArray();
 	Session.setPersistent('array', array);
 
+	var turkerId = Session.get('turkerId');
+	var record = Results.findOne(turkerId)
+
 	if (!record.assignmentId) {
 	var assignmentId = turkGetParam('assignmentId', "");
-	console.log('assignmentID', assignmentID);
+	console.log('assignmentID', assignmentId);
 	Results.update(turkerId, {$set:{assignmentId:assignmentId}}, function(error,result) {
 			if (error) {
 				console.log('error: ', error);

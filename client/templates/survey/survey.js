@@ -17,7 +17,7 @@ Template.survey.created = function() {
 
 	if (!record.assignmentId) {
 	var assignmentId = turkGetParam('assignmentId', "");
-	console.log('assignmentID', assignmentID);
+	console.log('assignmentID', assignmentId);
 	Results.update(turkerId, {$set:{assignmentId:assignmentId}}, function(error,result) {
 			if (error) {
 				console.log('error: ', error);
