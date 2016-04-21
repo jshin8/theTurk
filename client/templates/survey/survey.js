@@ -1,3 +1,31 @@
+var turkGetParam = function ( name, defaultValue ) { 
+   var regexS = "[\?&]"+name+"=([^&#]*)"; 
+   var regex = new RegExp( regexS ); 
+   var tmpURL = window.location.href; 
+   console.log('tmpURL',tmpURL)
+   var results = regex.exec( tmpURL ); 
+   if( results == null ) { 
+     return defaultValue; 
+   } else { 
+     return results[1];    
+   } 
+}
+
+Template.survey.created = function() {
+	var turkerId = Session.get('turkerId');
+	var record = Results.findOne(turkerId)
+
+	if (!record.assignmentId) {
+	var assignmentId = turkGetParam('assignmentId', "");
+	console.log('assignmentID', assignmentID);
+	Results.update(turkerId, {$set:{assignmentId:assignmentId}}, function(error,result) {
+			if (error) {
+				console.log('error: ', error);
+			}
+		});
+	}
+}
+
 Template.survey.helpers({
 	sentenceBegin: function() {
 		var turkerId = Session.get('turkerId');
