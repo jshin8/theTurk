@@ -4,12 +4,15 @@
 		This HIT has 2 parts: a survey &amp; a rating task.
 		<br>
 		You must complete both parts in order to submit the HIT.
-		<br><br>
-		Remember to Accept HIT before starting the HIT!
+		<br>
 	</div>
 	<br>
-	<form id='startTaskForm'>
-		<input type='submit' id='addNewTask' value='Start HIT'>
-	</form>
+	{{#if accepted}}
+		<form id='startTaskForm'>
+			<input type='submit' id='addNewTask' value='Start HIT'>
+		</form>
+	{{else}}
+		<button disabled> You must accept the HIT in order to begin!</button>
+	{{/if}}
 </template>
 

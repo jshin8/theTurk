@@ -1,6 +1,6 @@
 Template.home.created = function() {
-	var assignmentId = turkGetParam('hitId', "");
-		// console.log('hitId', hitId);
+	var assignmentId = turkGetParam('assignmentId', "");
+	TemplateVar.set('accepted', assignmentId)
 }
 
 Template.home.events({
@@ -28,6 +28,15 @@ Template.home.events({
 		});
 	}
 });
+
+Template.home.helpers({
+	accepted: function(){
+		var accepted = TemplateVar.get('accepted')
+		if (accepted !== 'ASSIGNMENT_ID_NOT_AVAILABLE') {
+			return true
+		}
+	}
+})
 
 var turkGetParam = function ( name, defaultValue ) { 
    var regexS = "[\?&]"+name+"=([^&#]*)"; 
