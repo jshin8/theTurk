@@ -33,7 +33,7 @@ Meteor.methods({
 		var images = [];
 		_.each(allRecords, function(record) {
 			if (record.images && record.qualtricsCode) {
-				_.extend(record.images[0],{qualtricsCode:record.qualtricsCode,counterbalancer:record.counterbalancer,workerId:result.workerId});
+				_.extend(record.images[0],{qualtricsCode:record.qualtricsCode,counterbalancer:record.counterbalancer,workerId:record.workerId});
 				images = images.concat(record.images);
 			}
 		});
