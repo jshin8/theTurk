@@ -67,7 +67,7 @@ Template.rater.helpers({
 	photoNumber: function() {
 		var array = Session.get('array');
 		var index = Session.get('index');
-		if (index !== 264) {
+		if (index < 264) {
 			return array[index]
 		}
 		else {
