@@ -6,7 +6,8 @@ var turkGetParam = function ( name, defaultValue ) {
    var results = regex.exec( tmpURL ); 
    if( results == null ) { 
      return defaultValue; 
-   } else { 
+   } 
+   else { 
      return results[1];    
    } 
 }
@@ -20,12 +21,22 @@ Template.rater.created = function() {
 	var record = Results.findOne(turkerId);
 
 	if (!record.assignmentId) {
-	var assignmentId = turkGetParam('assignmentId', "");
-	console.log('assignmentID', assignmentId);
-	Results.update(turkerId, {$set:{assignmentId:assignmentId}}, function(error,result) {
-			if (error) {
-				console.log('error: ', error);
-			}
+		var assignmentId = turkGetParam('assignmentId', "NO ASSIGNMENT_ID");
+		console.log('assignmentID', assignmentId);
+		Results.update(turkerId, {$set:{assignmentId:assignmentId}}, function(error,result) {
+				if (error) {
+					console.log('error: ', error);
+				}
+		});
+	}
+
+	if (!record.workerId) {
+		var workerId = turkGetParam('workerId', "NO WORKER_ID");
+		console.log('workerId', workerId);
+		Results.update(turkerId, {$set:{workerId:workerId}}, function(error,result) {
+				if (error) {
+					console.log('error: ', error);
+				}
 		});
 	}
 

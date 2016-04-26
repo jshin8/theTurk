@@ -11,9 +11,8 @@ Results.allow({
 });
 
 Results.attachSchema(new SimpleSchema({
-	username: {
+	workerId: {
 		type: String,
-		label: 'username',
 		optional: true
 	},
 	assignmentId: {
@@ -30,10 +29,6 @@ Results.attachSchema(new SimpleSchema({
 	},
 	images: {
 		type: [Object],
-		optional: true
-	},
-	'images.$.userId': {
-		type: String,
 		optional: true
 	},
 	'images.$.imageNumber': {
