@@ -67,7 +67,7 @@ Template.rater.helpers({
 	photoNumber: function() {
 		var array = Session.get('array');
 		var index = Session.get('index');
-		if (index < 264) {
+		if (index !== 264) {
 			return array[index]
 		}
 		else {
@@ -93,30 +93,33 @@ Template.body.events({
 		var index = Session.get('index');
 		var turkerId = Session.get('turkerId');
 		var timestamp = Math.floor(event.timeStamp);
-		if (location.match('/rater') && event.which==65) {
-			Session.set('loaded',false);
-			Session.set('index', index+1);
-			Meteor.call('liker', turkerId, array, index, timestamp, function(error,result) {
-				if (error) {
-					console.log('error: ', error);
-				}
-			});
-			setTimeout(function() {
-				timeout();
-			}, 100)
+		var loaded = Session.get('loaded')
+		if (loaded) {
+			if (location.match('/rater') && event.which==65) {
+				Session.set('loaded',false);
+				Session.set('index', index+1);
+				Meteor.call('liker', turkerId, array, index, timestamp, function(error,result) {
+					if (error) {
+						console.log('error: ', error);
+					}
+				});
+				setTimeout(function() {
+					timeout();
+				}, 100)
+			}
+			else if (location.match('/rater') && event.which==76) {
+				Session.set('loaded',false);
+				Session.set('index', index+1);
+				Meteor.call('disliker', turkerId, array, index, timestamp, function(error,result) {
+					if (error) {
+						console.log('error: ', error);
+					}
+				});
+				setTimeout(function() {
+					timeout();
+				}, 100)
+			} 
 		}
-		else if (location.match('/rater') && event.which==76) {
-			Session.set('loaded',false);
-			Session.set('index', index+1);
-			Meteor.call('disliker', turkerId, array, index, timestamp, function(error,result) {
-				if (error) {
-					console.log('error: ', error);
-				}
-			});
-			setTimeout(function() {
-				timeout();
-			}, 100)
-		} 
 	}
 });
 
